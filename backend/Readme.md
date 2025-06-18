@@ -52,8 +52,7 @@ Send a JSON object with the following structure:
           "firstname": "John",
           "lastname": "Doe"
         },
-        "email": "john.doe@example.com",
-        // other user fields
+        "email": "john.doe@example.com"
       }
     }
     ```
@@ -80,3 +79,87 @@ Send a JSON object with the following structure:
 - The `lastname` field is optional but must be at least 3 characters if provided.
 - The `email` must be unique and valid.
 - The `password` is stored securely (hashed) and not returned in the response.
+
+---
+
+# User Login Endpoint Documentation
+
+## POST `/users/login`
+
+### Description
+
+Authenticates a user with email and password. Returns a JWT token and user data if credentials are valid.
+
+---
+
+### Request Body
+
+Send a JSON object with the following structure:
+
+```json
+{
+  "email": "string (valid email, required)",
+  "password": "string (min 6 chars, required)"
+}
+```
+
+#### Example
+
+```json
+{
+  "email": "john.doe@example.com",
+  "password": "securePassword123"
+}
+```
+
+---
+
+### Responses
+
+- **200 OK**
+  - **Description:** User logged in successfully.
+  - **Body:**
+    ```json
+    {
+      "token": "jwt_token_string",
+      "user": {
+        "_id": "user_id",
+        "fullname": {
+          "firstname": "John",
+          "lastname": "Doe"
+        },
+        "email": "john.doe@example.com"
+      }
+    }
+    ```
+
+- **400 Bad Request**
+  - **Description:** Validation failed or missing required fields.
+  - **Body:**
+    ```json
+    {
+      "errors": [
+        {
+          "msg": "Error message",
+          "param": "field",
+          "location": "body"
+        }
+      ]
+    }
+    ```
+
+- **401 Unauthorized**
+  - **Description:** Invalid email or password.
+  - **Body:**
+    ```json
+    {
+      "msg": "Invalid credentials"
+    }
+    ```
+
+---
+
+### Notes
+
+- Both `email` and `password` are required.
+- Returns a JWT token
