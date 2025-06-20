@@ -153,7 +153,7 @@ Send a JSON object with the following structure:
   - **Body:**
     ```json
     {
-      "msg": "Invalid credentials"
+      "message": "Invalid email or password"
     }
     ```
 
@@ -162,4 +162,93 @@ Send a JSON object with the following structure:
 ### Notes
 
 - Both `email` and `password` are required.
-- Returns a JWT token
+- Returns a JWT token for authenticated requests.
+
+---
+
+# User Profile Endpoint Documentation
+
+## GET `/users/profile`
+
+### Description
+
+Returns the authenticated user's profile information.  
+**Requires authentication (JWT token in cookie or Authorization header).**
+
+---
+
+### Request
+
+- **Headers:**  
+  - `Cookie: token=jwt_token_string`  
+  or  
+  - `Authorization: Bearer jwt_token_string`
+
+---
+
+### Responses
+
+- **200 OK**
+  - **Description:** Returns the user's profile.
+  - **Body:**
+    ```json
+    {
+      "_id": "user_id",
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.doe@example.com"
+    }
+    ```
+
+- **401 Unauthorized**
+  - **Description:** No token provided or token invalid.
+  - **Body:**
+    ```json
+    {
+      "message": "Not authorized, token failed"
+    }
+    ```
+
+---
+
+# User Logout Endpoint Documentation
+
+## GET `/users/logout`
+
+### Description
+
+Logs out the authenticated user by clearing the authentication token and blacklisting it.  
+**Requires authentication (JWT token in cookie or Authorization header).**
+
+---
+
+### Request
+
+- **Headers:**  
+  - `Cookie: token=jwt_token_string`  
+  or  
+  - `Authorization: Bearer jwt_token_string`
+
+---
+
+### Responses
+
+- **200 OK**
+  - **Description:** User logged out successfully.
+  - **Body:**
+    ```json
+    {
+      "message": "Logged out"
+    }
+    ```
+
+- **401 Unauthorized**
+  - **Description:** No token provided or token invalid.
+  - **Body:**
+    ```json
+    {
+      "message": "Not authorized, token failed"
+    }
+    ```

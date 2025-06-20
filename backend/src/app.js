@@ -2,9 +2,11 @@ import dotenv from "dotenv";
 dotenv.config({ path: './.env' });
 import express from "express"
 import cors from "cors";
+import cookieParser from "cookie-parser"
 import connectToDb from "../db/db.js";
 import userRoutes from '../routes/user.routes.js'
 const app = express();
+app.use(cookieParser())
 app.use(cors());
 connectToDb();
 app.use(express.json())
@@ -14,6 +16,6 @@ app.get("/", (req, res) => {
     return res.status(200).json({ message: "Hello Roushni Devi" })
 })
 
-app.use('/users',userRoutes)
+app.use('/api/users',userRoutes)
 
 export default app
