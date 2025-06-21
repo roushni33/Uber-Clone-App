@@ -65,10 +65,10 @@ const logoutUser = async (req, res) => {
         return res.status(400).json({ message: 'No token found' });
     }
 
-    // Save token to blacklist
+    
     await BlacklistToken.create({ token });
 
-    // Clear token cookie
+    
     res.clearCookie('token');
 
     return res.status(200).json({ message: 'Logged out' });
