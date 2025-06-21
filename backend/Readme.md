@@ -252,3 +252,103 @@ Logs out the authenticated user by clearing the authentication token and blackli
       "message": "Not authorized, token failed"
     }
     ```
+        # Captain Registration Endpoint Documentation
+    
+    ## POST `/captains/register`
+    
+    ### Description
+    
+    Registers a new captain in the system. This endpoint validates the input, creates a new captain with vehicle details, hashes the password, and returns an authentication token along with the captain data.
+    
+    ---
+    
+    ### Request Body
+    
+    Send a JSON object with the following structure:
+    
+    ```json
+    {
+      "fullname": {
+        "firstname": "string (min 3 chars, required)",
+        "lastname": "string (min 3 chars, optional)"
+      },
+      "email": "string (valid email, required)",
+      "password": "string (min 6 chars, required)",
+      "vehicle": {
+        "color": "string (min 3 chars, required)",
+        "plate": "string (min 3 chars, required)",
+        "capacity": 1,
+        "vehicleType": "car" // or "motorcycle" or "auto"
+      }
+    }
+    ```
+    
+    #### Example
+    
+    ```json
+    {
+      "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+      },
+      "email": "john.captain@example.com",
+      "password": "securePassword123",
+      "vehicle": {
+        "color": "Red",
+        "plate": "MP 04 XY 6204",
+        "capacity": 4,
+        "vehicleType": "car"
+      }
+    }
+    ```
+    
+    ---
+    
+    ### Responses
+    
+    - **201 Created**
+      - **Description:** Captain registered successfully.
+      - **Body:**
+        ```json
+        {
+          "token": "jwt_token_string",
+          "captain": {
+            "_id": "captain_id",
+            "fullname": {
+              "firstname": "John",
+              "lastname": "Doe"
+            },
+            "email": "john.captain@example.com",
+            "vehicle": {
+              "color": "Red",
+              "plate": "MP 04 XY 6204",
+              "capacity": 4,
+              "vehicleType": "car"
+            }
+          }
+        }
+        ```
+    
+    - **400 Bad Request**
+      - **Description:** Validation failed or missing required fields.
+      - **Body:**
+        ```json
+        {
+          "errors": [
+            {
+              "msg": "Error message",
+              "param": "field",
+              "location": "body"
+            }
+          ]
+        }
+        ```
+    
+    ---
+    
+    ### Notes
+    
+    - All vehicle fields are required and must meet the minimum requirements.
+    - The `email` must be unique and valid.
+    - The `password` is stored securely (hashed) and not returned in the response.
+    - The `vehicleType` must be one of `"car"`,
