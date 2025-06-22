@@ -1,35 +1,35 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import {UserDataContext} from '../context/userContext'
+import { UserDataContext } from '../context/userContext'
 
 
 const UserSignup = () => {
-   const navigate = useNavigate();
-  const  [email , setEmail] = useState('')
-  const [password , setPassword] = useState('')
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  
 
-  const {user , setUser} = React.useContext(UserDataContext)
+
+  const { user, setUser } = React.useContext(UserDataContext)
 
   const submitHandler = async (e) => {
     e.preventDefault()
     const newUser = {
-      
-      fullname:{
-        firstname:firstName,
-        lastname:lastName
-      },
-      password:password,
-      email:email
-    
-    }
-    
-    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`,newUser)
 
-    if(response.status === 201){
+      fullname: {
+        firstname: firstName,
+        lastname: lastName
+      },
+      password: password,
+      email: email
+
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser)
+
+    if (response.status === 201) {
       const data = response.data
       setUser(data.user)
       localStorage.setItem('token', data.token)
@@ -110,8 +110,15 @@ const UserSignup = () => {
       </div>
 
       <div>
-        <p className='text-[10px] leading-tight'>
-          This site is protected by reCAPTCHA and the  <span className='underline'>Google Privacy Policy</span> and <span className='underline'>Terms of Service</span>.
+        <p className='text-xs text-gray-500 leading-snug text-center mt-4'>
+          This site is protected by reCAPTCHA and the{' '}
+          <span className='underline hover:text-blue-600 transition-colors duration-200 cursor-pointer'>
+            Google Privacy Policy
+          </span>{' '}
+          and{' '}
+          <span className='underline hover:text-blue-600 transition-colors duration-200 cursor-pointer'>
+            Terms of Service
+          </span>.
         </p>
       </div>
     </div>

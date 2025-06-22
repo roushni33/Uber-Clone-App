@@ -7,13 +7,13 @@ const UserLogin = () => {
   const navigate = useNavigate();
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("")
-  const [userData,setUserData] = useState({})
+  
 
   const {user , setUser} = React.useContext(UserDataContext)
   const submitHandler = async(e) => {
     e.preventDefault();
     const userData = {
-       email:email,
+       email:email, 
       password:password
     }
     
