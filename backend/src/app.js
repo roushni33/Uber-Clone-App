@@ -7,7 +7,7 @@ import connectToDb from "../db/db.js";
 import userRoutes from '../routes/user.routes.js'
 import captainRoutes from "../routes/captain.routes.js"
 import { mapsRoutes } from "../routes/maps.routes.js";
-
+import { ridesRoutes } from "../routes/rides.routes.js";
 const app = express();
 app.use(cookieParser())
 app.use(cors());
@@ -22,5 +22,6 @@ app.get("/", (req, res) => {
 app.use('/api/users',userRoutes)
 app.use('/api/captains',captainRoutes)
 app.use('/api/maps', mapsRoutes)
+app.use('/api/rides', ridesRoutes);
 
 export default app

@@ -1,25 +1,20 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+router.post(
+  '/create',
+  [
+    body('userId')
+      .isString()
+      .isLength({ min: 24, max: 24 })
+      .withMessage('Invalid user ID'),
 
-node_modules
-.env
-dist
-dist-ssr
-*.local
+    body('pickup')
+      .isString()
+      .isLength({ min: 3 })
+      .withMessage('Invalid pickup address'),
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+    body('destination')
+      .isString()
+      .isLength({ min: 3 })
+      .withMessage('Invalid destination address'),
+  ],
+  createRide
+);
