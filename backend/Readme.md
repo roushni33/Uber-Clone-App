@@ -534,3 +534,85 @@ Logs out the authenticated user by clearing the authentication token and blackli
         {
           "message": "Not authorized, token failed"
         }
+
+                # Maps API Routes
+        
+        This backend provides several map-related endpoints using the Google Maps API. All routes require authentication via the `authUser` middleware.
+        
+        ## Endpoints
+        
+        ### 1. Get Coordinates
+        
+        **GET** `/api/maps/get-coordinates`
+        
+        **Query Parameters:**
+        - `address` (string, required, min 3 chars): The address to geocode.
+        
+        **Response:**
+        ```json
+        {
+          "ltd": 37.7749,
+          "lang": -122.4194
+        }
+        ```
+        
+        **Errors:**
+        - `400`: Validation error or missing address.
+        - `404`: No results found for the given address.
+        
+        ---
+        
+        ### 2. Get Distance and Time
+        
+        **GET** `/api/maps/get-distance-time`
+        
+        **Query Parameters:**
+        - `origin` (string, required, min 3 chars): Starting address or location.
+        - `destination` (string, required, min 3 chars): Destination address or location.
+        
+        **Response:**
+        ```json
+        {
+          "distance": {
+            "text": "5.6 km",
+            "value": 5600
+          },
+          "duration": {
+            "text": "15 mins",
+            "value": 900
+          }
+        }
+        ```
+        
+        **Errors:**
+        - `400`: Validation error or missing parameters.
+        - `500`: Distance and time not found.
+        
+        ---
+        
+        ### 3. Get Autocomplete Suggestions
+        
+        **GET** `/api/maps/get-suggestions`
+        
+        **Query Parameters:**
+        - `input` (string, required, min 3 chars): Partial address or place name.
+        
+        **Response:**
+        ```json
+        [
+          "San Francisco, CA, USA",
+          "San Francisco International Airport (SFO), San Mateo County, CA, USA"
+        ]
+        ```
+        
+        **Errors:**
+        - `400`: Validation error or missing input.
+        - `500`: No suggestions found.
+        
+        ---
+        
+        ## Notes
+        
+        - All endpoints require a valid Google Maps API key set in the environment variable `GOOGLE_MAPS_API_KEY`.
+        - All endpoints require authentication.
+        - All responses are in JSON
