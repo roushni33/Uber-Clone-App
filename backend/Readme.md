@@ -278,7 +278,7 @@ Logs out the authenticated user by clearing the authentication token and blackli
         "color": "string (min 3 chars, required)",
         "plate": "string (min 3 chars, required)",
         "capacity": 1,
-        "vehicleType": "car" // or "motorcycle" or "auto"
+        "vehicleType": "car" // or "moto" or "auto"
       }
     }
     ```

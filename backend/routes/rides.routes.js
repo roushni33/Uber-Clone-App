@@ -1,13 +1,13 @@
 import express from 'express';
 const router = express.Router();
 import { body } from 'express-validator';
+import { createRideController } from '../controllers/Ride.Controller.js';
+import { authUser } from '../middlewares/auth.middleware.js';
 router.post(
   '/create',
+  authUser,
   [
-    body('userId')
-      .isString()
-      .isLength({ min: 24, max: 24 })
-      .withMessage('Invalid user ID'),
+   
 
     body('pickup')
       .isString()
@@ -18,8 +18,13 @@ router.post(
       .isString()
       .isLength({ min: 3 })
       .withMessage('Invalid destination address'),
+
+     body('vehicleType')
+      .isString()
+      .isIn(['auto', 'car', 'moto'])
+      .withMessage('Invalid vehicle type'), 
   ],
-  createRide
+  createRideController
 );
 
 export {router as ridesRoutes};

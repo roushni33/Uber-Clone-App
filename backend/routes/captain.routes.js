@@ -10,7 +10,7 @@ router.post('/register', [
     body('vehicle.color').isLength({ min: 3 }).withMessage('color must be at least 3 characters long'),
     body('vehicle.plate').isLength({ min: 3 }).withMessage('plate must be at least 3 characters long'),
     body('vehicle.capacity').isInt({ min: 1 }).withMessage('capacity must be at least 1'),
-    body('vehicle.vehicleType').customSanitizer(value => value.toLowerCase()).isIn(['car', 'motorcycle', 'auto']).withMessage('Invalid'),
+    body('vehicle.vehicleType').customSanitizer(value => value.toLowerCase()).isIn(['car', 'moto', 'auto']).withMessage('Invalid'),
 ],
     registerCaptain
 )
