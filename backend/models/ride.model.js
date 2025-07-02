@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 const rideSchema = new mongoose.Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'user',
         required: true
     },
     captain: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Captain',
+        ref: 'captain',
         
     },
     pickup: {
@@ -59,5 +59,5 @@ const rideSchema = new mongoose.Schema({
     }
 })
 
-const Ride = mongoose.model("ride", rideSchema);
-export default Ride;
+const rideModel = mongoose.model("ride", rideSchema);
+export default rideModel;

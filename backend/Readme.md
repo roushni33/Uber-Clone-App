@@ -616,3 +616,135 @@ Logs out the authenticated user by clearing the authentication token and blackli
         - All endpoints require a valid Google Maps API key set in the environment variable `GOOGLE_MAPS_API_KEY`.
         - All endpoints require authentication.
         - All responses are in JSON
+
+
+                     # Ride Routes API Documentation
+                
+                ## 1. Create Ride
+                
+                **POST** `/api/rides/create`
+                
+                ### Description
+                Creates a new ride request for an authenticated user. Calculates fare based on pickup and destination.
+                
+                ### Request Headers
+                - `Authorization: Bearer <token>` (required)
+                
+                ### Request Body
+                ```json
+                {
+                  "pickup": "string (min 3 chars, required)",
+                  "destination": "string (min 3 chars, required)",
+                  "vehicleType": "auto | car | moto"
+                }
+                ```
+                
+                #### Example
+                ```json
+                {
+                  "pickup": "Connaught Place, New Delhi",
+                  "destination": "India Gate, New Delhi",
+                  "vehicleType": "car"
+                }
+                ```
+                
+                ### Responses
+                
+                - **201 Created**
+                  ```json
+                  {
+                    "ride": {
+                      "_id": "rideObjectId",
+                      "user": "userObjectId",
+                      "pickup": "Connaught Place, New Delhi",
+                      "destination": "India Gate, New Delhi",
+                      "fare": 120,
+                      "status": "pending",
+                      // ...other ride fields
+                    }
+                  }
+                  ```
+                
+                - **400 Bad Request**
+                  ```json
+                  {
+                    "errors": [
+                      {
+                        "msg": "Invalid pickup address",
+                        "param": "pickup",
+                        "location": "body"
+                      }
+                    ]
+                  }
+                  ```
+                
+                - **500 Internal Server Error**
+                  ```json
+                  {
+                    "error": "Internal server error"
+                  }
+                  ```
+                
+                ---
+                
+                ## 2. Get Fare Estimate
+                
+                **GET** `/api/rides/get-fare`
+                
+                ### Description
+                Returns fare estimates for a given pickup and destination.
+                
+                ### Request Headers
+                - `Authorization: Bearer <token>` (required)
+                
+                ### Query Parameters
+                - `pickup` (string, required, min 3 chars)
+                - `destination` (string, required, min 3 chars)
+                
+                #### Example
+                ```
+                /api/rides/get-fare?pickup=Connaught+Place,+New+Delhi&destination=India+Gate,+New+Delhi
+                ```
+                
+                ### Responses
+                
+                - **200 OK**
+                  ```json
+                  {
+                    "fare": {
+                      "auto": 80,
+                      "car": 120,
+                      "moto": 60
+                    }
+                  }
+                  ```
+                
+                - **400 Bad Request**
+                  ```json
+                  {
+                    "errors": [
+                      {
+                        "msg": "Invalid pickup address",
+                        "param": "pickup",
+                        "location": "query"
+                      }
+                    ]
+                  }
+                  ```
+                
+                - **500 Internal Server Error**
+                  ```json
+                  {
+                    "error": "Internal server error"
+                  }
+                  ```
+                
+                ---
+                
+                ## Notes
+                
+                - All routes require authentication via JWT.
+                - `vehicleType` must be one of: `"auto"`, `"car"`, `"moto"`.
+                - Fare is calculated dynamically based on Google Maps distance and duration.
+                - The ride status is set to `"pending"` by default.
+                - OTP is generated for each ride and stored securely.

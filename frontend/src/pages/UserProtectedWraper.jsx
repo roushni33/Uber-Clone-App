@@ -1,44 +1,45 @@
-import React ,{ useContext, useEffect, useState} from 'react'
-import {UserDataContext} from '../context/userContext'
+import { useContext, useEffect, useState } from 'react'
+import { UserDataContext } from '../context/UserContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const UserProtectedWraper = ({
-    children
+  children
 }) => {
-    const token = localStorage.getItem('token')
-    const navigate = useNavigate()
-     const { user , setUser } = useContext(UserDataContext)
-        const [ isLoading , setIsLoading ] = useState(true)
+  const token = localStorage.getItem('token')
+  const navigate = useNavigate()
+  const { user, setUser } = useContext(UserDataContext)
+  const [isLoading, setIsLoading] = useState(true)
 
-     useEffect(() => {
-        if(!token){
-            navigate('/login')
-        }
-
-     },[token])
-     axios.get(`${import.meta.env.VITE_BASE_URL}/users/profile` , {
-      headers:{
-        Authorization:`Bearer ${token}`
+  useEffect(() => {
+    if (!token) {
+      navigate('/login')
+    }
+    axios.get(`${import.meta.env.VITE_BASE_URL}/users/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-     }).then((response) => {
-      if(response.status === 200){
+    }).then((response) => {
+      if (response.status === 200) {
         const data = response.data
-        setUser(data.user)
+        setUser(data)
         setIsLoading(false)
       }
-     })
-     .catch(err => {
-      console.log(err)
-      localStorage.removeItem('token')
-      navigate('/login')
-     })
+    })
+      .catch(err => {
+        console.log(err)
+        localStorage.removeItem('token')
+        navigate('/login')
+      })
 
-     if(isLoading){
-      return (
-        <div>Loading...</div>
-      )
-     }
+
+  }, [token, navigate, setUser])
+
+  if (isLoading) {
+    return (
+      <div>Loading...</div>
+    )
+  }
   return (
     <>
       {children}

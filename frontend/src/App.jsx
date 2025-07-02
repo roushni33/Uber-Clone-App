@@ -14,8 +14,15 @@ import CaptainHome from './pages/CaptainHome'
 import Riding from './pages/Riding'
 import CaptainRiding from './pages/CaptainRiding'
 import 'remixicon/fonts/remixicon.css'
+import { useEffect } from 'react'
 
 const App = () => {
+  useEffect(() => {
+    console.log('App mounted');
+    return () => {
+      console.log('App unmounted');
+    };
+  }, []);
   return (
     <div>
       <Routes>

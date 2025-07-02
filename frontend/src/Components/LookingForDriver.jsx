@@ -14,20 +14,20 @@ const LookingForDriver = (props) => {
                         <i className="ri-map-pin-user-fill"></i> 
                         <div className=''>
                             <h3 className='font-medium text-lg'>562/11-A</h3>
-                            <p className='text-gray-600 text-sm -mt-1'>Kankariya Talab,Ahmedabad</p>
+                            <p className='text-gray-600 text-sm -mt-1'>{props.pickup}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 border-b-2'>
                         <i className="ri-map-pin-2-fill text-lg"></i>
                         <div className=''>
                             <h3 className='font-medium text-lg'>562/11-A</h3>
-                            <p className='text-gray-600 text-sm -mt-1'>Kankariya Talab,Ahmedabad</p>
+                            <p className='text-gray-600 text-sm -mt-1'>{props.destination}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 '>
                         <i className="ri-currency-line"></i>
                         <div className=''>
-                            <h3 className='font-medium text-lg'>₹200.10</h3>
+                            <h3 className='font-medium text-lg'>₹{Math.round(props.fare[props.vehicleType])}</h3>
                             <p className='text-gray-600 text-sm -mt-1'>Cash Cash</p>
                         </div>
                     </div>
