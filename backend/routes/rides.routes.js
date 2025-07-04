@@ -51,7 +51,7 @@ router.get('/start-ride' ,
 
 router.post('/end-ride',
   authCaptain,
-  body('/rideId').isMongoId().withMessage("Invalid ride id"),
+  body('rideId').isMongoId().withMessage("Invalid ride id"),
   endRideController
 )
 

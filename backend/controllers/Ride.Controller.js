@@ -116,21 +116,22 @@ export const startRideController = async (req, res) => {
     }
 }
 
-export const endRideController = async (req,res) => {
-     const errors = validationResult(req);
+export const endRideController = async (req, res) => {
+    const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array })
     }
 
     const { rideId } = req.body;
-    try{
-        const ride = await endRide({rideId, captain: req.captain})
+    try {
 
-        sendMessageToSocketId(ride.user.socketId,'ride-ended',ride);
-
+        const ride = await endRide({ rideId, captain: req.captain })
         
+        sendMessageToSocketId(ride.user.socketId, 'ride-ended', ride);
+
+
         return res.status(200).json(ride);
-    }catch(error){
-        return res.status(500).json({message:err.message})
+    } catch (error) {
+        return res.status(500).json({ message: err.message })
     }
 }

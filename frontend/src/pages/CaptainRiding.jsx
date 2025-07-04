@@ -4,6 +4,7 @@ import 'remixicon/fonts/remixicon.css'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import FinishRide from '../Components/FinishRide'
+import LiveTracking from '../Components/LiveTracking'
 
 const CaptainRiding = () => {
     const [FinishRidePanel , setFinishRidePanel] = useState(false)
@@ -28,7 +29,7 @@ const CaptainRiding = () => {
                 </Link>
             </div>
             <div className='h-4/5 '>
-                <img className='h-full w-full object-cover' src='https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif'></img>
+                <LiveTracking/>
             </div>
             <div className='h-1/5 p-6 flex items-center relative justify-between bg-yellow-400'
                  onClick={() => {

@@ -16,7 +16,7 @@ const CaptainDetails = () => {
           </h4>
         </div>
         <div>
-          <h4 className='text-xl font-semibold '>₹200</h4>
+          <h4 className='text-xl font-semibold '>₹295.20</h4>
           <p className='text-sm text-gray-600 '>Earned</p>
         </div>
       </div>
