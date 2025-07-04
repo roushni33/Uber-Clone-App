@@ -42,17 +42,7 @@ const Home = () => {
     socket.emit("join", { userType: "user", userId: user._id })
   }, [user])
 
-  // socket.on('ride-confirmed' , ride => {
-  //   setVehicleFound(false)
-  //   setWaitingForDriverPanel(true)
-  //   setRide(ride)
-  // })
-
-  // socket.on('ride-started' , ride => {
-  //   console.log(ride)
-  //   setWaitingForDriverPanel(false)
-  //   navigate('/riding' , { state : {ride}})
-  // })
+ 
   useEffect(() => {
     const handleRideConfirmed = (ride) => {
       setVehicleFound(false)

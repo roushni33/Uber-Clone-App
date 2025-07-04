@@ -12,16 +12,16 @@ export function initialiseSocket(server) {
     });
 
     io.on("connection", (socket) => {
-        console.log(`Socket connected: ${socket.id}`);
+       
         socket.on('join', async (data) => {
             const { userId, userType } = data;
             if (userType === 'user') {
-                console.log("User connected")
+                console.log(`User connected: ${socket.id}`)
                 await userModel.findByIdAndUpdate(userId, { socketId: socket.id });
             } else if (userType === 'captain') {
-                console.log("Captain connected")
+                console.log(`Captain connected: ${socket.id}`)
                 await captainModel.findByIdAndUpdate(userId, { socketId: socket.id });
-                // console.log(`Updated captain ${userId} with socketId ${socket.id}`);
+               
             }
         });
 

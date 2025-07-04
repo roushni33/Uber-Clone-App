@@ -12,7 +12,7 @@ const FinishRide = (props) => {
             <div className='flex items-center justify-between p-4 border-2 border-yellow-400 rounded-lg mt-4 '>
                 <div className='flex items-center gap-3 '>
                     <img className='h-12 w-12 object-cover rounded-full' src='https://randomuser.me/api/portraits/women/90.jpg'/>
-                    <h2 className='text-xl font-semibold'>Roushni</h2>
+                    <h2 className='text-xl font-semibold'>{props.ride?.user.fullname.firstname}</h2>
                 </div>
                 <h5 className='text-lg font-semibold'>2.2 kM</h5>
             </div>
@@ -22,20 +22,20 @@ const FinishRide = (props) => {
                         <i className="ri-map-pin-user-fill"></i>
                         <div className=''>
                             <h3 className='font-medium text-lg'>562/11-A</h3>
-                            <p className='text-gray-600 text-sm -mt-1'>Kankariya Talab,Ahmedabad</p>
+                            <p className='text-gray-600 text-sm -mt-1'>{props.ride?.pickup}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 border-b-2'>
                         <i className="ri-map-pin-2-fill text-lg"></i>
                         <div className=''>
                             <h3 className='font-medium text-lg'>562/11-A</h3>
-                            <p className='text-gray-600 text-sm -mt-1'>Kankariya Talab,Ahmedabad</p>
+                            <p className='text-gray-600 text-sm -mt-1'>{props.ride?.destination}</p>
                         </div>
                     </div>
                     <div className='flex items-center gap-5 p-3 '>
                         <i className="ri-currency-line"></i>
                         <div className=''>
-                            <h3 className='font-medium text-lg'>₹200.10</h3>
+                            <h3 className='font-medium text-lg'>₹{Math.round(props.ride?.fare)}</h3>
                             <p className='text-gray-600 text-sm -mt-1'>Cash Cash</p>
                         </div>
                     </div>

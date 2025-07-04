@@ -1,9 +1,10 @@
 import { getAddressCordinates, getDistanceTime } from '../services/maps.service.js';
-import { createRide, getFare, startRide } from '../services/ride.service.js';
+import { createRide, endRide, getFare, startRide } from '../services/ride.service.js';
 import { validationResult } from 'express-validator';
 import { getCaptainsInTheRadius } from '../services/maps.service.js';
 import { sendMessageToSocketId } from '../socket.js'
 import rideModel from '../models/ride.model.js';
+import userModel from '../models/user.model.js';
 
 
 export const createRideController = async (req, res) => {
@@ -109,14 +110,27 @@ export const startRideController = async (req, res) => {
         const ride = await startRide({ rideId, otp, captain: req.captain });
         console.log('Emitting ride-started to user socketId:', ride.user.socketId);
 
-        sendMessageToSocketId(ride.user.socketId, 'ride-started', ride);
-
-
-        if (ride.user && ride.user.socketId) {
-            sendMessageToSocketId(ride.user.socketId, 'ride-confirmed', ride);
-        }
         return res.status(200).json(ride);
     } catch (err) {
         return res.status(500).json({ message: err.message })
+    }
+}
+
+export const endRideController = async (req,res) => {
+     const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array })
+    }
+
+    const { rideId } = req.body;
+    try{
+        const ride = await endRide({rideId, captain: req.captain})
+
+        sendMessageToSocketId(ride.user.socketId,'ride-ended',ride);
+
+        
+        return res.status(200).json(ride);
+    }catch(error){
+        return res.status(500).json({message:err.message})
     }
 }
