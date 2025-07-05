@@ -7,12 +7,13 @@ export function initialiseSocket(server) {
     io = new Server(server, {
         cors: {
             origin: process.env.FRONTEND_URL,
+            credentials: true,
             methods: ["GET", "POST"]
         }
     });
 
     io.on("connection", (socket) => {
-       
+
         socket.on('join', async (data) => {
             const { userId, userType } = data;
             if (userType === 'user') {
@@ -21,7 +22,7 @@ export function initialiseSocket(server) {
             } else if (userType === 'captain') {
                 console.log(`Captain connected: ${socket.id}`)
                 await captainModel.findByIdAndUpdate(userId, { socketId: socket.id });
-               
+
             }
         });
 
@@ -34,7 +35,7 @@ export function initialiseSocket(server) {
                 {
                     location: {
                         type: 'Point',
-                        coordinates: [location.lng, location.ltd] 
+                        coordinates: [location.lng, location.ltd]
                     }
                 }
             );
