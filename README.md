@@ -1,4 +1,4 @@
-# 🚖 Uber Clone – Real-Time Ride Booking App (MERN + Google Maps + Socket.IO)
+# 🚖 RideX – Real-Time Ride Booking App (MERN + Google Maps + Socket.IO)
 
 An advanced **Uber-style ride-booking platform** built using the **MERN stack**, featuring **live driver tracking**, **real-time communication** with **Socket.IO**, and **Google Maps API** integration for accurate location services.
 
