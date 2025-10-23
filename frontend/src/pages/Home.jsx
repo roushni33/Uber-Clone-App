@@ -224,12 +224,12 @@ const Home = () => {
 
   return (
     <div className='h-screen relative overflow-hidden'>
-      <img className='w-16 absolute left-5 top-5' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Uber_logo_2018.png/1200px-Uber_logo_2018.png'></img>
+      <img className='w-16 absolute left-5 top-5' src='../RideX.png'></img>
       <div className='h-screen w-screen'>
         <LiveTracking/>
       </div>
       <div className=' flex flex-col justify-end h-screen absolute top-0 w-full '>
-        <div className='h-[30%] p-6 bg-white p-5 relative'>
+        <div className='h-[30%] p-6 bg-white  relative'>
           <h5 ref={planelCloseRef} onClick={() => {
             setPanelOpen(false)
             setSuggestions([])

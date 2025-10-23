@@ -18,7 +18,7 @@ import { useEffect } from 'react'
 
 const App = () => {
   return (
-    <div>
+    <div className="mobile-container">
       <Routes>
         <Route path='/' element={<Start />} />
         <Route path='/login' element={<UserLogin />} />

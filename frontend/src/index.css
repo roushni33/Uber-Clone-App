@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* @media (min-width: 640px) {
+  body {
+    background-color: #3a3a3a;
+  }
+  .mobile-container {
+    max-width: 420px;
+    height: 100vh;
+    margin: 0vh auto;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    background-color: rgb(215, 215, 215);
+    position: relative;
+  }
+} */

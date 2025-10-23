@@ -55,7 +55,7 @@ const CaptainSignup = () => {
   return (
     <div className='h-screen flex flex-col justify-between px-4 py-3'>
       <div className='flex-1 flex flex-col justify-start'>
-        <img className='w-16 mb-3' src='https://www.svgrepo.com/show/505031/uber-driver.svg' alt='Uber' />
+        <img className='w-16 mb-3' src='../rideX.png' alt='RideX' />
 
         <form className='w-full max-w-md mx-auto' onSubmit={submitHandler}>
           <h3 className='text-lg font-medium mb-2'>Captain's Name</h3>

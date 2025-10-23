@@ -19,7 +19,7 @@ const VehiclePanel = (props) => {
       }} className='flex w-full mb-2 p-3 items-center justify-between border-2 active:border-black  rounded-xl  '>
         <img className='h-12 ' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_538,w_956/v1688398971/assets/29/fbb8b0-75b1-4e2a-8533-3a364e7042fa/original/UberSelect-White.png" alt="" />
         <div className=' w-1/2 ml-2'>
-          <h4 className='font-medium text-base'>UberGo <span><i className="ri-user-3-fill"></i>4</span></h4>
+          <h4 className='font-medium text-base'>RideXGo <span><i className="ri-user-3-fill"></i>4</span></h4>
           <h5 className='font-medium text-sm'>
             {duration?.text ? duration.text + ' away' : '--'}
           </h5>
@@ -54,7 +54,7 @@ const VehiclePanel = (props) => {
       }} className='flex w-full mb-2 p-3 items-center justify-between border-2 active:border-black rounded-xl  '>
         <img className='h-12 ' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1648431773/assets/1d/db8c56-0204-4ce4-81ce-56a11a07fe98/original/Uber_Auto_558x372_pixels_Desktop.png" alt="" />
         <div className=' w-1/2 ml-2'>
-          <h4 className='font-medium text-base'>UberAuto <span><i className="ri-user-3-fill"></i>3</span></h4>
+          <h4 className='font-medium text-base'>RideXAuto <span><i className="ri-user-3-fill"></i>3</span></h4>
           <h5 className='font-medium text-sm'>
             {duration?.text ? duration.text + ' away' : '--'}
           </h5>

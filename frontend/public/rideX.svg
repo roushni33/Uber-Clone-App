@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="400" height="400" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+  <!-- Rounded black background -->
+  <rect x="0" y="0" width="400" height="400" rx="90" ry="90" fill="#000000"/>
+
+  <!-- RideX text centered -->
+  <text x="50%" y="52%"
+        fill="#FFFFFF"
+        font-family="Helvetica, Arial, sans-serif"
+        font-weight="700"
+        font-size="120"
+        text-anchor="middle"
+        dominant-baseline="middle"
+        letter-spacing="-2">
+    RideX
+  </text>
+</svg>

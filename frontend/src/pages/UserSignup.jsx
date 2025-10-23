@@ -44,7 +44,7 @@ const UserSignup = () => {
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>
       <div>
-        <img className='w-16 mb-10 ' src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Uber_logo_2018.png/1200px-Uber_logo_2018.png'></img>
+        <img className='w-16 mb-10 ' src='../RideX.png'></img>
         <form onSubmit={(e) => {
           submitHandler(e)
         }}>
